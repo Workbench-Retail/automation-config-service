@@ -640,4 +640,98 @@ flows:
         owner: BPP
         expect: false
         description: Status updates - order delivered 
-
+  - id: Customization_Input_Text_Flow
+    description: Retail 1.2.5 (Customization input)
+    sequence: &base_line_flow
+      - key: select_input
+        type: select
+        unsolicited: false
+        pair: on_select
+        owner: BAP
+        expect: true
+        description: BAP select the item
+        input:
+          - name: fashion_select
+            type: ret10_grocery_select
+          - name: custom_input_text
+            label: Enter text
+            type: text
+      - key: on_select_input
+        type: on_select
+        unsolicited: false
+        pair: null
+        owner: BPP
+        expect: false
+        description:
+          BPP returns item breakup when item is in stock and offer applied
+          (if any)
+      - key: init
+        type: init
+        unsolicited: false
+        pair: on_init
+        owner: BAP
+        expect: false
+        description: Buyer initiate the product and send the updated fulfillment id
+      - key: on_init
+        type: on_init
+        unsolicited: false
+        pair: null
+        owner: BPP
+        expect: false
+        description: Respond to init
+      - key: confirm
+        type: confirm
+        unsolicited: false
+        pair: on_confirm
+        owner: BAP
+        expect: false
+        description: Buyer confirms product
+      - key: on_confirm
+        type: on_confirm
+        unsolicited: false
+        pair: null
+        owner: BPP
+        expect: false
+        description: Seller Accepts confirmation
+      - key: on_status_pending
+        type: on_status
+        unsolicited: true
+        pair: null
+        owner: BPP
+        expect: false
+        description: Status updates - order accepted
+      - key: on_status_packed
+        type: on_status
+        unsolicited: true
+        pair: null
+        owner: BPP
+        expect: false
+        description: Status updates - order packed
+      - key: on_status_agent_assigned
+        type: on_status
+        unsolicited: true
+        pair: null
+        owner: BPP
+        expect: false
+        description: Status updates - agent assigned
+      - key: on_status_picked
+        type: on_status
+        unsolicited: true
+        pair: null
+        owner: BPP
+        expect: false
+        description: Status updates - order picked up
+      - key: on_status_out_for_delivery
+        type: on_status
+        unsolicited: true
+        pair: null
+        owner: BPP
+        expect: false
+        description: Status updates - order out for delivery
+      - key: on_status_order_delivered
+        type: on_status
+        unsolicited: true
+        pair: null
+        owner: BPP
+        expect: false
+        description: Status updates - order delivered
