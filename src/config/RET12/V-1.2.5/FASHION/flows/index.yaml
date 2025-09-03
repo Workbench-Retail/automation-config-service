@@ -1277,8 +1277,8 @@ flows:
             label: Select a resolution
             type: select
             values: 
-              - "Replacement"  
-              - "Refund"  
+              - "R1-Replacement"  
+              - "R2-Refund"  
             default: "Replacement"
       - key: on_issue_resolved
         type: on_issue
